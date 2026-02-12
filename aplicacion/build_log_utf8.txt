@@ -1,0 +1,89 @@
+﻿env: load .env
+env: export EXPO_PUBLIC_SUPABASE_URL EXPO_PUBLIC_SUPABASE_ANON_KEY
+React Compiler enabled
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+node.exe : Error: 
+Invalid mimeType for 
+image with source: ./
+assets/images/icono.i
+co
+En línea: 1 
+Carácter: 1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Error:    
+ Invalid ...mages    
+/icono.ico:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Error: Invalid 
+mimeType for image 
+with source: ./assets
+/images/icono.ico
+    at ensureImageOpt
+ionsAsync (C:\Users\m
+r924\Documents\Talent
+o\aplicacion\node_mod
+ules\@expo\image-util
+s\src\Image.ts:167:11
+)
+    at 
+generateImageAsync (C
+:\Users\mr924\Documen
+ts\Talento\aplicacion
+\node_modules\@expo\i
+mage-utils\src\Image.
+ts:225:16)
+    at getFaviconFrom
+ExpoConfigAsync (C:\U
+sers\mr924\Documents\
+Talento\aplicacion\no
+de_modules\expo\node_
+modules\@expo\cli\src
+\export\favicon.ts:80
+:24)
+    at getVirtualFavi
+conAssetsAsync (C:\Us
+ers\mr924\Documents\T
+alento\aplicacion\nod
+e_modules\expo\node_m
+odules\@expo\cli\src\
+export\favicon.ts:32:
+16)
+    at exportFromServ
+erAsync (C:\Users\mr9
+24\Documents\Talento\
+aplicacion\node_modul
+es\expo\node_modules\
+@expo\cli\src\export\
+exportStaticAsync.ts:
+203:28)
+    at 
+exportAppAsync (C:\Us
+ers\mr924\Documents\T
+alento\aplicacion\nod
+e_modules\expo\node_m
+odules\@expo\cli\src\
+export\exportApp.ts:3
+85:9)
+    at exportAsync (C
+:\Users\mr924\Documen
+ts\Talento\aplicacion
+\node_modules\expo\no
+de_modules\@expo\cli\
+src\export\exportAsyn
+c.ts:28:3)
