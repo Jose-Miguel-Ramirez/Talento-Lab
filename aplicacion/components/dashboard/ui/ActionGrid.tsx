@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity, Alert, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert, useWindowDimensions, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
@@ -39,7 +39,7 @@ export function ActionGrid({ actions }: ActionGridProps) {
             {actions.map((action, index) => (
                 <Animated.View
                     key={action.id}
-                    entering={FadeInDown.delay(300 + (index * 50)).springify()}
+                    entering={Platform.OS !== 'web' ? FadeInDown.delay(300 + (index * 50)).springify() : undefined}
                     style={{ width: itemWidth }}
                 >
                     <TouchableOpacity

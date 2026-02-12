@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Platform } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, { FadeInRight } from 'react-native-reanimated';
 import { ThemedText } from '@/components/themed-text';
@@ -47,30 +47,37 @@ export function NearbyTalentsList({ talents, loading, onChatPress }: NearbyTalen
         );
     }
 
-    const renderItem = ({ item, index }: { item: Talent, index: number }) => (
-        <Animated.View entering={FadeInRight.delay(400 + (index * 100)).springify()} style={styles.cardWrapper}>
-            <TouchableOpacity style={styles.card} activeOpacity={0.8}>
-                <Image source={{ uri: item.image }} style={styles.image} contentFit="cover" transition={500} />
-                <View style={styles.info}>
-                    <View style={styles.ratingBadge}>
-                        <IconSymbol name="star.fill" size={10} color="#FBBF24" />
-                        <ThemedText style={styles.ratingText}>{item.rating?.toFixed(1) || '5.0'}</ThemedText>
-                    </View>
-                    <ThemedText style={styles.name} numberOfLines={1}>{item.first_name} {item.last_name}</ThemedText>
-                    <ThemedText style={styles.profession} numberOfLines={1}>{item.profession || 'Profesional'}</ThemedText>
-                    <ThemedText style={styles.distance}>{item.distance ? `${item.distance.toFixed(1)} km` : 'Cerca'}</ThemedText>
+    const renderItem = ({ item, index }: { item: Talent, index: number }) => {
+        const isWeb = Platform.OS === 'web';
 
-                    <TouchableOpacity
-                        style={styles.chatButton}
-                        onPress={() => onChatPress(item.id)}
-                    >
-                        <IconSymbol name="message.fill" size={14} color="#fff" />
-                        <ThemedText style={styles.chatButtonText}>Chat</ThemedText>
-                    </TouchableOpacity>
-                </View>
-            </TouchableOpacity>
-        </Animated.View>
-    );
+        return (
+            <Animated.View
+                entering={!isWeb ? FadeInRight.delay(400 + (index * 100)).springify() : undefined}
+                style={styles.cardWrapper}
+            >
+                <TouchableOpacity style={styles.card} activeOpacity={0.8}>
+                    <Image source={{ uri: item.image }} style={styles.image} contentFit="cover" transition={500} />
+                    <View style={styles.info}>
+                        <View style={styles.ratingBadge}>
+                            <IconSymbol name="star.fill" size={10} color="#FBBF24" />
+                            <ThemedText style={styles.ratingText}>{item.rating?.toFixed(1) || '5.0'}</ThemedText>
+                        </View>
+                        <ThemedText style={styles.name} numberOfLines={1}>{item.first_name} {item.last_name}</ThemedText>
+                        <ThemedText style={styles.profession} numberOfLines={1}>{item.profession || 'Profesional'}</ThemedText>
+                        <ThemedText style={styles.distance}>{item.distance ? `${item.distance.toFixed(1)} km` : 'Cerca'}</ThemedText>
+
+                        <TouchableOpacity
+                            style={styles.chatButton}
+                            onPress={() => onChatPress(item.id)}
+                        >
+                            <IconSymbol name="message.fill" size={14} color="#fff" />
+                            <ThemedText style={styles.chatButtonText}>Chat</ThemedText>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+            </Animated.View>
+        );
+    };
 
     return (
         <FlatList
@@ -163,13 +170,14 @@ const styles = StyleSheet.create({
     },
     emptyState: {
         marginHorizontal: 24,
-        padding: 24,
-        backgroundColor: '#fff',
+        padding: 32,
+        backgroundColor: '#f8fafc', // More subtle background
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: '#F1F5F9',
+        borderWidth: 2,
+        borderColor: '#e2e8f0', // Cleared border
+        borderStyle: 'dashed', // Dashed look suggests "placeholder" rather than "bug"
     },
     emptyText: {
         color: '#64748B',
